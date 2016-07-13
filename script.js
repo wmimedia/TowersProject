@@ -2,9 +2,9 @@ $(document).ready(function(){
   //Predefined constants
   towers = {};
   towers.diskHeight=20; //disk height in px
-  towers.col_pos=['112px', '245px', '378px'];
+  towers.colPos=["112px", "245px", "378px"];
   //there are always 3 towers and they are in constant positioning
-  towers.top='180px'; //distance to up
+  towers.top="180px"; //distance to up
   //this also does not change... will also dictate how far the disks will animate to the top of the tower
   towers.oderedList=$('ol');
 
@@ -111,7 +111,7 @@ $(document).ready(function(){
   {
     //here we are passing in towers.move_to[x]
     //because we have now gathered all the necessary information
-    var leftValue = towers.col_pos[towers.move_to[moveNum - 1]];//zero first time
+    var leftValue = towers.colPos[towers.move_to[moveNum - 1]];//zero first time
 
     $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate({
       left: leftValue
@@ -140,7 +140,7 @@ $(document).ready(function(){
       //clears ordered list
       towers.oderedList.append(towers.listHtml);
       //appends the listHtml back to the oredered list of moves
-      secondMove(towers.animateCount);
+      secondMove(2);
       //passes 1 on the first iteration
     });
   }

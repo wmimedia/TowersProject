@@ -148,7 +148,41 @@ body
    position: absolute;
    z-index: 20;
  }
+ #disk0
+ {
+   width: 50px;
+   left: 97px;
+   bottom: 40px;
+ }
 
+ #disk1
+ {
+   width: 60px;
+   bottom: 20px;
+   left: 92px;
+ }
+
+#disk2
+{
+  width: 70px;
+  bottom: 0px;
+  left: 87px;
+}
+#source
+{
+  bottom: 0px;
+  left: 112px;
+}
+#helper
+{
+  bottom: 0px;
+  left: 245px;
+}
+#goal
+{
+  bottom: 0px;
+  left: 378px;
+}
  /*styling notes
  -post border radius
  -post background images*/
