@@ -1,8 +1,8 @@
 $(document).ready(function(){
   //Predefined constants
   towers = {};
-  towers.diskHeight=20; //disk height in px
-  towers.colPos=["112px", "245px", "378px"];
+  towers.diskHeight = 20; //disk height in px
+  towers.colPos = ['112px', '245px', '378px'];
   //there are always 3 towers and they are in constant positioning
   towers.top="180px"; //distance to up
   //this also does not change... will also dictate how far the disks will animate to the top of the tower
@@ -77,33 +77,56 @@ $(document).ready(function(){
   {
     var move_from = towers.moveFrom[moveNum - 1]; //will return 0, 1, or 2
     var move_to = towers.moveTo[moveNum - 1]; //same as above
-
+    // console.log(move_from);
+    // console.log(move_to);
+    // console.log(moveNum);
+    // moveNum+=1;
     if (move_from === 0)
     {
-      towers.columns[0]+=1;
+      towers.columns[0] -= 1; //towers.columns[x] is the amount of disks on pole
     }
-    else if (move_to == 1)
+    else if (move_from === 1)
     {
-      towers.columns[1] +=1;
+      towers.columns[1] -= 1;
     }
-    else if (move_to == 2)
+    else if (move_from === 2)
     {
-      towers.columns[2] += 1;
+      towers.columns[2] -= 1;
     }
-    return 0 + ((towers.columns[move_to] - 1) * (towers.diskHeight)) + 'px';
+
+    if (move_to === 0)
+    {
+      towers.columns[0] += 1;
+    }
+    else if (move_to === 1)
+    {
+      towers.columns[1] += 1;
+    }
+    else if (move_to === 2)
+    {
+     towers.columns[2] += 1;
+    }
+
+    // console.log(move_to); //should return 2 on first iteration
+    // console.log(towers.columns[0]);
+    // console.log(towers.columns[2]); //should return 1 on first iteration
+    // console.log(towers.columns[move_to]);
+    // console.log(((towers.columns[move_to] - 1) * (towers.diskHeight)) + 'px');
+
+    return (0 + ((towers.columns[move_to] - 1) * (towers.diskHeight)) + 'px');
     //will return the bottom : value minus 1 and finds destination column before move to destination is called
   }
   function thirdMove(moveNum, distanceDown)
   {
-    $('disk' + towers.diskOrder[towers.animateCount - 1]).animate(
+    $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate(
     {
       bottom: distanceDown
     }, 500, 'swing',//animation type and speed
     function()
     {
-      if(towers.animateCount < towers.move_to.length)
+      if(towers.animateCount < towers.moveTo.length)
       {
-        first_move();
+        firstMove();
       }//anonymus function call will produce the animation call for everything
     });
   }
@@ -111,15 +134,15 @@ $(document).ready(function(){
   {
     //here we are passing in towers.move_to[x]
     //because we have now gathered all the necessary information
-    var leftValue = towers.colPos[towers.move_to[moveNum - 1]];//zero first time
-
+    var leftValue = towers.colPos[towers.moveTo[moveNum - 1]];//zero first time
+    // destination post given by moveTo
     $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate({
       left: leftValue
     }, 500, 'swing',
     function()
     {
       var distanceDown = getDistanceDown(moveNum);
-      thirdMove(moveNum,distanceDown);
+      thirdMove(moveNum, distanceDown);
     });
   }
   function firstMove() //first animation or the ascent
@@ -140,7 +163,7 @@ $(document).ready(function(){
       //clears ordered list
       towers.oderedList.append(towers.listHtml);
       //appends the listHtml back to the oredered list of moves
-      secondMove(2);
+      secondMove(towers.animateCount);
       //passes 1 on the first iteration
     });
   }
