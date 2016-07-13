@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Towers Of Hanoi</title>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+  <body>
+    <!-- *************Begin Game Board Layout -->
+    <div id="wrapper">
+      <div id="moves">
+        <ol></ol>
+      </div>
+      <div id="header"></div>
+      <div id="board">
+        <div class="disk" id="disk0"></div>
+        <div class="disk" id="disk1"></div>
+        <div class="disk" id="disk2"></div>
+        <!-- going forward i will leave the disk creation to javascript so that we can dynamically add more disks and make the game harder -->
+        <div class="post" id="source post0"></div>
+        <div class="post" id="helper post1"></div>
+        <div class="post" id="goal post2"></div>
+      </div>
+    </div>
+    <!-- ********************Site Application content goes here **************-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
