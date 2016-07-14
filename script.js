@@ -3,13 +3,21 @@ $(document).ready(function() {
     // predefined constants
     game = {};
     game.disc_height = 20;
+    //*****numbers can be dynamically achieved by
+    //$('#post1').position().left - $('#post0').position().left
+    //and this would be beneficial for alignment. However, my div ids are not
+    //set up for this and I dont care enough to refactor the code in the hopes
+    //that nothing breaks. :) <3
     game.distance_between_posts = $('#post1').position().left - $('#post0').position().left; // integer value
-    game.post_top = $('.post').height(); // string px value
+    //UPDATE: Nevermind.... i obviously did it. got tired of looking at the disks fall incorrectly
 
+    //there are always 3 towers and they are in constant positioning
+    game.post_top = $('.post').height(); // string px value
+    //this also does not change... will also dictate how far the disks will animate to the top of the tower
     // dynamic demo variables
     game.list_items = []; // holds html for moves list
     game.list_html = '';
-    game.columns = [0, 0, 0]; // Amount of discs on each stack. Calculates distance to drop down.
+    game.columns = [0, 0, 0]; // Amount of discs on each stack. will also be used to calculate the distance to drop animation
     game.move_from = []; // map of moves. move_from[0] moves to move_to[0]
     game.move_to = [];
     game.disc_order = [];
@@ -47,6 +55,11 @@ $(document).ready(function() {
         game.move_to.push(disc);
     }
 
+    // console.log(move_from);
+    // console.log(move_to);
+    // console.log(moveNum);
+    // moveNum+=1;
+    
     function hanoi (disc, src, hlp, goal) {
 
        if (disc > 0) {
@@ -56,7 +69,7 @@ $(document).ready(function() {
             game.list_items.push('<li>' + (game.list_items.length + 1) + '. Move disc ' + disc + ' from ' + src + ' to ' + goal + '</li>');
             update_move_from_array(src);
             update_move_to_array(goal);
-            game.disc_order.push(disc - 1); // minus 1 because our discs start at 0
+            game.disc_order.push(disc - 1); // minus 1 because discs start at 0
 
             hanoi(disc - 1, hlp, src, goal);
         }
@@ -86,22 +99,27 @@ $(document).ready(function() {
         // returns bottom: value. minus -1 because we want dest column before we updated it
     }
 
-    function get_left_value_for_demo () {
+    function get_left_value_for_demo ()
+    {
 
          var current_disc = game.disc_order[game.animate_count - 1]; // will assign 0 first move
          var left_value = $('#disc' + current_disc).position().left; // integer
          var direction = (game.move_from[game.animate_count - 1] < game.move_to[game.animate_count - 1]) ? 'right' : 'left';
 
-         if (direction == 'right') {
+         if (direction == 'right')
+         {
              var multiplier = (game.move_to[game.animate_count - 1] - game.move_from[game.animate_count - 1] == 2) ? 2 : 1;
-         } else if (direction == 'left') {
+         }
+         else if (direction == 'left')
+         {
              var multiplier = (game.move_to[game.animate_count - 1] + game.move_from[game.animate_count - 1] == 2) ? -2 : -1;
          }
 
          return left_value + (game.distance_between_posts * multiplier) + 'px';
     }
 
-    function send_disc_down (distance_down) {
+    function send_disc_down (distance_down)
+    {
 
         $('#disc' + game.disc_order[game.animate_count - 1]).animate({
             bottom: distance_down
@@ -114,7 +132,8 @@ $(document).ready(function() {
         });
     }
 
-    function send_disc_across () {
+    function send_disc_across ()
+    {
 
         var left_value = get_left_value_for_demo();
 
@@ -122,14 +141,16 @@ $(document).ready(function() {
             left: left_value
         }, 250,
         'swing',
-        function() {
+        function()
+        {
 
             var distance_down = get_distance_down(game.animate_count);
             send_disc_down(distance_down);
         });
     }
 
-    function send_disc_up () {  // first animation, going up
+    function send_disc_up ()
+    {  // first animation, going up
 
         clearTimeout(game.timeout);
         game.animate_count += 1;
@@ -175,7 +196,8 @@ $(document).ready(function() {
        }
     }
 
-    function reset_game_data () {
+    function reset_game_data ()
+    {
 
         clearTimeout(game.timeout);
 
@@ -192,7 +214,8 @@ $(document).ready(function() {
             game.drop_down_bottom_value = 0; // game related
     }
 
-    $('input.demo').click(function() {
+    $('input.demo').click(function()
+    {
 
         if (game.started === 0) {
 
@@ -204,7 +227,9 @@ $(document).ready(function() {
 
             game.timeout = setTimeout(send_disc_up, 300);
 
-        } else { // reset dynamic variables
+        }
+        else
+        { // reset dynamic variables
 
             reset_game_data();
 
@@ -224,19 +249,23 @@ $(document).ready(function() {
      *
      */
 
-    function get_left_value_for_game (current_disc_num, target_post) {
+    function get_left_value_for_game (current_disc_num, target_post)
+    {
 
         var left = $('#post' + target_post).position().left - ($('#disc' + current_disc_num).outerWidth() /2 ) + ($('#post' + target_post).outerWidth() / 2);
         return left + 'px';
     }
 
-    function get_distance_to_drop_down (target_post) {
+    function get_distance_to_drop_down (target_post)
+    {
 
         var discs_on_post = 0;
 
-        for (var i = 0; i < game.disc_map[0].length; i+=1) {
+        for (var i = 0; i < game.disc_map[0].length; i+=1)
+        {
 
-            if (!isNaN(game.disc_map[target_post][i])) {
+            if (!isNaN(game.disc_map[target_post][i]))
+            {
 
                 discs_on_post += 20;
             }
@@ -244,14 +273,15 @@ $(document).ready(function() {
         return discs_on_post;
     }
 
-    function send_to_top_of_post (current_disc_num, target_post, source_post) {
+    function send_to_top_of_post (current_disc_num, target_post, source_post)
+    {
 
         $('#disc' + current_disc_num).animate({
             left: get_left_value_for_game(current_disc_num, target_post),
             top: '50px'
-            },
-            150,
-            function() {
+            },150,
+            function()
+            {
                 send_to_bottom_of_post (current_disc_num, target_post);
             }
         );
@@ -262,8 +292,7 @@ $(document).ready(function() {
         $('#disc' + current_disc_num).animate({
 
             top: (230 - game.distance_to_drop_down) + 'px' // drop down distance set earlier
-            },
-            300,
+          },250,
             function() {
 
                 update_grids(current_disc_num, source_post, target_post); // update game.disc_map & game.draggable_grid
@@ -277,13 +306,15 @@ $(document).ready(function() {
         );
     }
 
-    function set_disc_map (disc_amount) {
-
-        for (var i = 0; i < disc_amount; i+=1) {
+    function set_disc_map (disc_amount)
+    {
+        for (var i = 0; i < disc_amount; i+=1)
+        {
 
             game.disc_map[0][i] = i;
 
-            if (i > 0) {
+            if (i > 0)
+            {
                 game.disc_map[i] = new Array(disc_amount);
             }
         }
@@ -293,11 +324,12 @@ $(document).ready(function() {
 
         var source_post;
 
-        for (var i = 0; i < 3; i+=1) {
-
-            for (var j = 0; j < game.disc_map[0].length; j+=1) {
-
-                if (game.disc_map[i][j] === disc_num) {
+        for (var i = 0; i < 3; i+=1)
+        {
+            for (var j = 0; j < game.disc_map[0].length; j+=1)
+            {
+                if (game.disc_map[i][j] === disc_num)
+                {
 
                     source_post = i;
 
@@ -306,7 +338,8 @@ $(document).ready(function() {
             }
         }
 
-        if (source_post === undefined) {
+        if (source_post === undefined)
+        {
             alert('source post not found.');
         }
     }
