@@ -11,16 +11,31 @@
       <div id="moves">
         <ol></ol>
       </div>
-      <div id="header"></div>
+      <div id="header">Towers of Hanoi Game</div>
       <div id="board">
-        <div class="disk" id="disk0"></div>
-        <div class="disk" id="disk1"></div>
-        <div class="disk" id="disk2"></div>
-        <!-- going forward i will leave the disk creation to javascript so that we can dynamically add more disks and make the game harder -->
-        <div class="post" id="source"></div>
-        <div class="post" id="helper"></div>
-        <div class="post" id="goal"></div>
-      </div>
+                <div class="post" id="post0"></div>
+                <div class="post" id="post1"></div>
+                <div class="post" id="post2"></div>
+                <div id="discs"></div>
+            </div>
+            <div id="footer">
+                <ul>
+                    <li><input type="button" id="3play_game" value="Play with 3 Discs" class="game" /></li>
+                    <li><input type="button" id="4play_game" value="Play with 4 Discs" class="game" /></li>
+                    <li><input type="button" id="5play_game" value="Play with 5 Discs" class="game" /></li>
+                    <li><input type="button" id="6play_game" value="Play with 6 Discs" class="game" /></li>
+                    <li><input type="button" id="7play_game" value="Play with 7 Discs" class="game" /></li>
+                    <li><input type="button" id="8play_game" value="Play with 8 Discs" class="game" /></li>
+                 </ul>
+                  <ul class="demos">
+                    <li><input type="button" id="3disc" value="3 Disc Demo" class="demo" /></li>
+                    <li><input type="button" id="4disc" value="4 Disc Demo" class="demo" /></li>
+                    <li><input type="button" id="5disc" value="5 Disc Demo" class="demo" /></li>
+                    <li><input type="button" id="6disc" value="6 Disc Demo" class="demo" /></li>
+                    <li><input type="button" id="7disc" value="7 Disc Demo" class="demo" /></li>
+                    <li><input type="button" id="8disc" value="8 Disc Demo" class="demo" /></li>
+                </ul>
+            </div>
     </div>
     <!-- ********************Site Application content goes here **************-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

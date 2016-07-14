@@ -29,6 +29,12 @@ $(document).ready(function(){
   //these three variable arrays will always be the same length
   //
   towers.animateCount = 0;
+  towers.timeout = null;
+  towers.started = 0;
+
+  towers.disc_map = [ [] , [], [] ];
+  towers.droppable_posts = [];
+  towers.posts_selector = '';
 
   function moveFromArray (disk)
   {
