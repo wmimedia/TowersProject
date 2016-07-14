@@ -1,45 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Towers Of Hanoi</title>
-    <link rel="stylesheet" href="style.css"></link>
-  </head>
-  <body>
-    <!-- *************Begin Game Board Layout -->
-    <div id="wrapper">
-      <div id="moves">
-        <ol></ol>
-      </div>
-      <div id="header">Towers of Hanoi Game</div>
-      <div id="board">
-                <div class="post" id="post0"></div>
-                <div class="post" id="post1"></div>
-                <div class="post" id="post2"></div>
-                <div id="discs"></div>
-            </div>
-            <div id="footer">
-                <ul>
-                    <li><input type="button" id="3play_game" value="Play with 3 Discs" class="game" /></li>
-                    <li><input type="button" id="4play_game" value="Play with 4 Discs" class="game" /></li>
-                    <li><input type="button" id="5play_game" value="Play with 5 Discs" class="game" /></li>
-                    <li><input type="button" id="6play_game" value="Play with 6 Discs" class="game" /></li>
-                    <li><input type="button" id="7play_game" value="Play with 7 Discs" class="game" /></li>
-                    <li><input type="button" id="8play_game" value="Play with 8 Discs" class="game" /></li>
-                 </ul>
-                  <ul class="demos">
-                    <li><input type="button" id="3disc" value="3 Disc Demo" class="demo" /></li>
-                    <li><input type="button" id="4disc" value="4 Disc Demo" class="demo" /></li>
-                    <li><input type="button" id="5disc" value="5 Disc Demo" class="demo" /></li>
-                    <li><input type="button" id="6disc" value="6 Disc Demo" class="demo" /></li>
-                    <li><input type="button" id="7disc" value="7 Disc Demo" class="demo" /></li>
-                    <li><input type="button" id="8disc" value="8 Disc Demo" class="demo" /></li>
-                </ul>
-            </div>
-    </div>
-    <!-- ********************Site Application content goes here **************-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Tower of Hanoi</title>
+        <meta name="description" content="An animated demonstration of how to complete the Tower of Hanoi game in the minimum amount of moves">
+        <meta name="viewport" content="width=device-width">
+
+        <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <div id="moves">
+            <ol></ol>
+        </div>
+        <div id="header">
+            <h1>Tower of Hanoi</h1>
+            <p>lets play a game</p>
+        </div>
+        <div id="board">
+            <div class="post" id="post0"></div>
+            <div class="post" id="post1"></div>
+            <div class="post" id="post2"></div>
+            <div id="discs"></div>
+        </div>
+        <div id="footer">
+            <ul>
+                <li><input type="button" id="3play_game" value="Play with 3 Discs" class="game" /></li>
+                <li><input type="button" id="4play_game" value="Play with 4 Discs" class="game" /></li>
+                <li><input type="button" id="5play_game" value="Play with 5 Discs" class="game" /></li>
+                <li><input type="button" id="6play_game" value="Play with 6 Discs" class="game" /></li>
+                <li><input type="button" id="7play_game" value="Play with 7 Discs" class="game" /></li>
+                <li><input type="button" id="8play_game" value="Play with 8 Discs" class="game" /></li>
+             </ul>
+              <ul class="demos">
+                <li><input type="button" id="3disc" value="3 Disc Demo" class="demo" /></li>
+                <li><input type="button" id="4disc" value="4 Disc Demo" class="demo" /></li>
+                <li><input type="button" id="5disc" value="5 Disc Demo" class="demo" /></li>
+                <li><input type="button" id="6disc" value="6 Disc Demo" class="demo" /></li>
+                <li><input type="button" id="7disc" value="7 Disc Demo" class="demo" /></li>
+                <li><input type="button" id="8disc" value="8 Disc Demo" class="demo" /></li>
+            </ul>
+        </div>
+        </div>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
 </html>

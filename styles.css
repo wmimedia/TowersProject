@@ -1,0 +1,314 @@
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    color: #444;
+    font: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    background: url(img.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*
+ * Remove text-shadow in selection highlight:  i
+ * These selection declarations have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px 0px 0px 10px;
+}
+
+ul li {
+    display: inline;
+    padding: 6px 10px 6px 0px;
+    margin: 0px;
+}
+
+ul li:last-child {
+    padding-right: 0px;
+}
+
+ul.demos {
+    margin: 0 auto;
+}
+
+ul.demos li {
+    padding-right: 35px;
+}
+
+ul.demos li:last-child {
+    padding-right: 0px;
+}
+
+ul.demos li:first-child {
+    padding-left: 0px;
+}
+
+img {
+    vertical-align: middle;
+}
+
+h1 {
+    font-family: 'Princess Sofia', Verdana, Geneva, Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 32px;
+    color: #5C5C5C;
+    padding: 0;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+p {
+    font-size: 0.8em;
+    padding: 0 10px;
+    margin-top: -10px;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+#wrapper {
+    width: 820px;
+    /*height: 670px;*/
+    padding: 10px 0 0;
+    margin: 10px auto;
+    border-radius: 8px;
+    background-color: #444;
+    background-color: rgba(97, 97, 97, 0.63);
+}
+
+#banner {
+    width: 800px;
+    margin: 0 0px 10px 10px;
+    background-color: #CCC;
+    border-radius: 6px;
+    height: 110px;
+}
+
+#footer {
+    width: 800px;
+    margin: 0 0px 10px 10px;
+    background-color: #CCC;
+    border-radius: 6px;
+    height: 110px;
+    float: left;
+}
+
+#ad {
+    width: 728px;
+    height: 90px;
+    margin: 0px auto;
+    padding-top: 10px;
+}
+
+#header {
+    margin: 0 10px 10px 0;
+    width: 510px;
+    height: 160px;
+    border-radius: 6px;
+    background-color: #CCC;
+    position: relative;
+    float: right;
+}
+
+#board {
+    margin: 0 10px;
+    width: 510px;
+    height: 250px;
+    border-radius: 6px;
+    background-color: #CCC;
+    position: relative;
+    float: right;
+    clear: right;
+}
+
+#moves {
+    margin: 0 0 10px 10px;
+    width: 280px;
+    height: 420px;
+    border-radius: 6px;
+    background-color: #CCC;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+#moves > ol {
+    padding: 2px 0 6px 16px;
+    font-size: 0.8em;
+    list-style-type: none;
+}
+
+#board .post { /* post styling */
+    height: 180px;
+    width: 20px;
+    background-color: #444;
+    background: url(img.png) no-repeat center center;
+    box-shadow: 5px 3px 10px #2B211E;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    position: absolute;
+    z-index: 10;
+}
+
+.disc {
+    height: 18px; /* total disc height is 20 (18 + 1 + 1) */
+    border: 1px solid #2C1911;
+    border-radius: 5px;
+    background-color: black;
+    background: url(../img/wood_chip.jpg) no-repeat center center;
+    box-shadow: 3px 3px 6px #331306;
+    position: absolute;
+    z-index: 20;
+}
+
+/*
+ Notes:
+
+ First post is 112px left.
+ Center of first post is 122px from left side of containing div
+ First Disc position should be 122px - (First Disc Width / 2)
+ First width width currently set to: 50px
+*/
+#disc0 { /* total disc height is 50 (48 + 1 + 1) */
+    width: 48px;
+    left: 97px; /* 122 - 25 */
+}
+
+#disc1 {
+    width: 58px;
+    left: 92px; /* 122 - 30 */
+}
+
+#disc2 {
+    width: 68px;
+    left: 87px; /* 122 - 35 */
+}
+
+#disc3 { /* total disc height is 50 (48 + 1 + 1) */
+    width: 78px;
+    left: 82px; /* 122 - 40 */
+}
+
+#disc4 {
+    width: 88px;
+    left: 77px; /* 122 - 45 */
+}
+
+#disc5 {
+    width: 98px;
+    left: 72px; /* 122 - 50 */
+}
+
+#disc6 {
+    width: 108px;
+    left: 67px; /* 122 - 50 */
+}
+
+#disc7 {
+    width: 118px;
+    left: 62px; /* 122 - 50 */
+}
+
+#disc8 {
+    width: 128px;
+    left: 57px; /* 122 - 50 */
+}
+
+#post0 { /* posts are 133px apart */
+    bottom: 0px;
+    left: 112px;
+}
+
+#post1 {
+    bottom: 0px;
+    left: 245px;
+}
+
+#post2 {
+    bottom: 0px;
+    left: 378px;
+}
+
+input {
+    -moz-box-shadow:inset 0px 1px 0px 0px #17dec6;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #17dec6;
+    box-shadow:inset 0px 1px 0px 0px #17dec6;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid black;
+    display:inline-block;
+    color:#ffffff;
+    font-family:arial;
+    font-size:12px;
+    font-weight:bold;
+    padding:5px 6px;
+    text-decoration:none;
+    text-shadow:1px 1px 0px #4d3f26;
+}
+
+input:hover {
+    background-color:#24339c;
+}
+
+input:active {
+    position:relative;
+    top:1px;
+}
