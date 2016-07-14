@@ -1,12 +1,22 @@
 $(document).ready(function(){
   //Predefined constants
   towers = {};
-  towers.diskHeight = 20; //disk height in px
+  towers.diskHeight = $('#disk1').outerHeight(); //disk height in 20 px
   towers.colPos = ['112px', '245px', '378px'];
+  //*****numbers can be dynamically achieved by
+  //$('#post1').position().left - $('#post0').position().left
+  //and this would be beneficial for alignment. However, my div ids are not
+  //set up for this and I dont care enough to refactor the code in the hopes
+  //that nothing breaks. :) <3
+
+  towers.postDistance = $('#helper').position().left - $('#source').position().left;
+
+  //UPDATE: Nevermind.... i obviously did it. got tired of looking at the disks fall incorrectly
+
   //there are always 3 towers and they are in constant positioning
-  towers.top="180px"; //distance to up
+  towers.top=$('.post').height(); //distance to up
   //this also does not change... will also dictate how far the disks will animate to the top of the tower
-  towers.oderedList=$('ol');
+  towers.oderedList=$('#moves > ol');
 
   //Predefined Variables
   towers.listItems=[]; //array of list moves for animation
@@ -113,10 +123,10 @@ $(document).ready(function(){
     // console.log(towers.columns[move_to]);
     // console.log(((towers.columns[move_to] - 1) * (towers.diskHeight)) + 'px');
 
-    return (0 + ((towers.columns[move_to] - 1) * (towers.diskHeight)) + 'px');
+    return ((towers.columns[move_to] - 1) * (towers.diskHeight)) + 'px';
     //will return the bottom : value minus 1 and finds destination column before move to destination is called
   }
-  function thirdMove(moveNum, distanceDown)
+  function itsGoingDown(distanceDown)
   {
     $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate(
     {
@@ -126,26 +136,45 @@ $(document).ready(function(){
     {
       if(towers.animateCount < towers.moveTo.length)
       {
-        firstMove();
+        goingUp();
       }//anonymus function call will produce the animation call for everything
     });
   }
-  function secondMove (moveNum)
+  function getLeftVal()
+  {
+    var currentDisk = towers.diskOrder[towers.animateCount-1]; //will assign 0 the first iteration
+    var leftValue = $('#disk' + currentDisk).position().left; //dynamically takes the CSS left value of current disk being moved
+
+    var direction = (towers.moveFrom[towers.animateCount - 1] < towers.moveTo[towers.animateCount-1]) ? 'right' : 'left';
+
+    if(direction === 'right')
+    {
+      var multiplier = (towers.moveTo[towers.animateCount - 1] - towers.moveFrom[towers.animateCount - 1] == 2) ? 2 : 1;
+    }
+    //are we going two posts over to the right or one
+    else if (direction === 'left')
+    {
+      var multiplier = (towers.moveTo[towers.animateCount - 1] + towers.moveFrom[towers.animateCount - 1] == 2) ? -2 : -1;
+    }
+    //are we going two posts to the left or one
+    return leftValue + (towers.postDistance * multiplier) + 'px';
+  }
+  function across ()
   {
     //here we are passing in towers.move_to[x]
     //because we have now gathered all the necessary information
-    var leftValue = towers.colPos[towers.moveTo[moveNum - 1]];//zero first time
+    var leftValue = getLeftVal();//towers.colPos[towers.moveTo[towers.animateCount - 1]];//zero first time
     // destination post given by moveTo
     $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate({
       left: leftValue
     }, 500, 'swing',
     function()
     {
-      var distanceDown = getDistanceDown(moveNum);
-      thirdMove(moveNum, distanceDown);
+      var distanceDown = getDistanceDown(towers.animateCount);
+      itsGoingDown(distanceDown);
     });
   }
-  function firstMove() //first animation or the ascent
+  function goingUp() //first animation or the ascent
   {
     towers.animateCount += 1;
 
@@ -163,7 +192,7 @@ $(document).ready(function(){
       //clears ordered list
       towers.oderedList.append(towers.listHtml);
       //appends the listHtml back to the oredered list of moves
-      secondMove(towers.animateCount);
+      across();
       //passes 1 on the first iteration
     });
   }
@@ -178,7 +207,7 @@ $(document).ready(function(){
     //passes in 4 things... the number of disks and the three towers
   }
   calculateMoves(3);
-  setTimeout(firstMove, 1500);
+  setTimeout(goingUp, 1500);
   //running a recursive function and animating after calculation
   //created 1.5 second timeout for fluidity
 
