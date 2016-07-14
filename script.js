@@ -30,35 +30,6 @@ $(document).ready(function(){
   //
   towers.animateCount = 0;
 
-  towers.timeout = null;
-  towers.started = 0;
-
-
-  //******************BUTTON SELECTION AND DISK POPULATION****************//
-
-  function populateDisks(disks)
-  {
-    var diskHtml = '';
-    var bottom = (disks * towers.diskHeight) - towers.diskHeight;
-    //tells the height that the very first disk should sit on
-    //disk height = 20 *the amount of disks there are
-    for (var i=0; i<disks; i+=1)
-    {
-      diskHtml += '<div class = "disk" id = "disk"'+i+'></div';
-    }
-
-    $('#disks').html(diskHtml);
-
-    for (var i; i<disks; i+=1)
-    {
-      $('#disk'+i).css('bottom', bottom + 'px');
-      bottom = bottom - towers.diskHeight;
-      //iiterates and places disks at the right height.
-    }
-  }
-
-
-  //******************ANIMATION DEMO DEFINITIONS****************//
   function moveFromArray (disk)
   {
     if (disk == 'source')
@@ -196,7 +167,7 @@ $(document).ready(function(){
     // destination post given by moveTo
     $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate({
       left: leftValue
-    }, 250, 'swing',
+    }, 500, 'swing',
     function()
     {
       var distanceDown = getDistanceDown(towers.animateCount);
@@ -205,23 +176,21 @@ $(document).ready(function(){
   }
   function goingUp() //first animation or the ascent
   {
-    clearTimeout(towers.timeout);
-
     towers.animateCount += 1;
 
     $('#disk' + towers.diskOrder[towers.animateCount - 1]).animate
     ({
       bottom: towers.top //animation of disk going up
-    }, 250, 'swing',
+    }, 500, 'swing',
     function ()
     {
       //callback function
-      // towers.listHtml += towers.listItems.shift();
+      towers.listHtml += towers.listItems.shift();
       //shifts pushed list items from one array listItems to another (listHtml)
       //allows for record of movements
-      // towers.orderedList.html('');
+      towers.orderedList.html('');
       //clears ordered list
-      towers.orderedList.append(towers.listItems.shift());
+      towers.orderedList.append(towers.listHtml);
       //appends the listHtml back to the oredered list of moves
       across();
       //passes 1 on the first iteration
@@ -237,52 +206,10 @@ $(document).ready(function(){
     hanoi(disks, 'source', 'helper', 'goal');
     //passes in 4 things... the number of disks and the three towers
   }
-  // calculateMoves(3);
-  // setTimeout(goingUp, 1500);
+  calculateMoves(3);
+  setTimeout(goingUp, 1500);
   //running a recursive function and animating after calculation
   //created 1.5 second timeout for fluidity
 
-  //*************CHECK FOR DATA ERRORS & LET THE GAMES BEGIN******************//
-
-
-  // the function you see defined below was supposed to be used to ennact demos
-  // least necessary move solutions for any number of disks and more or less
-  // test whether a button for a demo had been pressed and parse that button into an
-  // integer to be used to populate  certain number of divs of the disk class.
-
-  // However, it has been committed to a separate branch and did not work completely.
-
-  // $('input').click(function()
-  // {
-  //   if (towers.started===0)
-  //   {
-  //     towers.started = 1;
-  //     var diskAmount = parseInt($(this).attr('id'));
-  //     populateDisks(diskAmount);
-  //     calculateMoves(diskAmount);
-  //
-  //     towers.timeout = setTimeout(goingUp, 300);
-  //   }
-  //   else
-  //   //reset dynamic variables
-  //   {
-  //     clearTimeout(towers.timeout);
-  //
-  //     towers.listItems = [];
-  //     towers.listHtml = '';
-  //     towers.columns = [0,0,0];
-  //     towers.moveFrom = [];
-  //     towers.moveTo = [];
-  //     towers.diskOrder = [];
-  //     towers.animateCount = 0;
-  //     towers.orderedList.html('');
-  //     $('#disks').html('');
-  //
-  //     var diskAmount = parseInt($(this).attr('id'));
-  //     populateDisks(diskAmount);
-      calculateMoves(diskAmount);
-
-      towers.timeout = setTimeout(goingUp, 300);
-  });
   console.log(window.towers);
 });
